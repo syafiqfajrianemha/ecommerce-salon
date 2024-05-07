@@ -22,39 +22,39 @@
             @csrf
 			<div class="row">
 				<div class="col-lg-6 col-md-12 col-12">
-					<div class="checkbox-form">						
+					<div class="checkbox-form">
 						<h3>Billing Details</h3>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="checkout-form-list">
 									<label>Username <span class="required">*</span></label>
-                                    <input type="text" name="username" value="{{ auth()->user()->username }}" placeholder="Username ...">
+                                    <input type="text" name="username" value="{{ auth()->user()->username }}">
 								</div>
 							</div>
-							<div class="col-md-6">
+							{{-- <div class="col-md-6">
 								<div class="checkout-form-list">
 									<label>First Name <span class="required">*</span></label>
                                     <input type="text" name="first_name" value="{{ auth()->user()->first_name }}" placeholder="First Name ...">
 								</div>
-							</div>
-							<div class="col-md-6">
+							</div> --}}
+							{{-- <div class="col-md-6">
 								<div class="checkout-form-list">
 									<label>Last Name <span class="required">*</span></label>
                                     <input type="text" name="last_name" value="{{ auth()->user()->last_name }}" placeholder="Last Name ...">
 								</div>
-							</div>
-							<div class="col-md-12">
+							</div> --}}
+							{{-- <div class="col-md-12">
 								<div class="checkout-form-list">
 									<label>Address <span class="required">*</span></label>
                                     <input type="text" name="address1" value="{{ auth()->user()->address1 }}" placeholder="Home number and street name...">
 								</div>
-							</div>
-							<div class="col-md-12">
+							</div> --}}
+							{{-- <div class="col-md-12">
 								<div class="checkout-form-list">
                                 <input type="text" name="address2" value="{{ auth()->user()->address2}}" placeholder="Apartment, suite, unit etc. (optional)...">
 								</div>
-							</div>
-							<div class="col-md-12">
+							</div> --}}
+							{{-- <div class="col-md-12">
 								<div class="checkout-form-list">
 									<label>Province<span class="required">*</span></label>
 									<select name="province_id"id="province-id" value="{{ auth()->user()->province_id }}">
@@ -62,46 +62,46 @@
 											@foreach($provinces as $province => $pro)
 											<option {{ auth()->user()->province_id == $province ? 'selected' : null }} value="{{ $province }}">{{ $pro }}</option>
 											@endforeach
-									</select> 
+									</select>
 								</div>
-							</div>
-							<div class="col-md-6">
+							</div> --}}
+							{{-- <div class="col-md-6">
 								<div class="checkout-form-list">
 									<label>City<span class="required">*</span></label>
 									<select name="city_id" id="city-id" value="{{ auth()->user()->city_id }}" >
 											@foreach($cities as $id => $city)
 											<option {{ auth()->user()->city_id == $id ? 'selected' : null }} value="{{ $id }}">{{ $city }}</option>
 											@endforeach
-                                 	</select> 
+                                 	</select>
 								</div>
-							</div>
-							<div class="col-md-6">
+							</div> --}}
+							{{-- <div class="col-md-6">
 								<div class="checkout-form-list">
-									<label>Postcode / Zip <span class="required">*</span></label>						
+									<label>Postcode / Zip <span class="required">*</span></label>
 									<input type="number" name="postcode" placeholder="PostalCode..." value="{{ auth()->user()->postcode }}">
 								</div>
-							</div>
+							</div> --}}
 							<div class="col-md-6">
 								<div class="checkout-form-list">
-									<label>Phone  <span class="required">*</span></label>		
-									<input type="text" name="phone" placeholder="Phone..." value="{{ auth()->user()->phone }}">
+									<label>WhatsApp<span class="required">*</span></label>
+									<input type="text" name="phone" value="{{ auth()->user()->phone }}">
 								</div>
 							</div>
-							<div class="col-md-6">
+							{{-- <div class="col-md-6">
 								<div class="checkout-form-list">
 									<label>Email Address </label>
-									<input type="text" name="email" readonly placeholder="Email..." value="{{ auth()->user()->email}}">								
+									<input type="text" name="email" readonly placeholder="Email..." value="{{ auth()->user()->email}}">
 								</div>
-							</div>							
+							</div> --}}
 						</div>
 						<div class="different-address">
-							<div class="ship-different-title">
+							{{-- <div class="ship-different-title">
 								<h3>
 									<label>Ship to a different address?</label>
 									<input id="ship-box" type="checkbox" name="ship_to"/>
 								</h3>
-							</div>
-							<div id="ship-box-info">
+							</div> --}}
+							{{-- <div id="ship-box-info">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="checkout-form-list">
@@ -138,44 +138,44 @@
 											<label>Province<span class="required">*</span></label>
 											<select name="shipping_province_id"id="shipping-province">
 												<option value="">- Please Select -</option>
-												
-											</select> 
+
+											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="checkout-form-list">
                                             <label>City<span class="required">*</span></label>
                                             <select name="city_id" id="shipping-city" >
-                                          
-                                 	</select> 
+
+                                 	</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="checkout-form-list">
-											<label>Postcode / Zip <span class="required">*</span></label>				
+											<label>Postcode / Zip <span class="required">*</span></label>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="checkout-form-list">
-											<label>Phone  <span class="required">*</span></label>			
+											<label>Phone  <span class="required">*</span></label>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="checkout-form-list">
-											<label>Email </label>										
+											<label>Email </label>
 										</div>
-									</div>	
-								</div>					
-							</div>
+									</div>
+								</div>
+							</div> --}}
 							<div class="order-notes">
 								<div class="checkout-form-list mrg-nn">
 									<label for="note">Order Notes</label>
 									<textarea name="note" id="note" cols="30" rows="10"></textarea>
-								</div>									
+								</div>
 							</div>
-						</div>													
+						</div>
 					</div>
-				</div>	
+				</div>
 				<div class="col-lg-6 col-md-12 col-12">
 					<div class="your-order">
 						<h3>Your order</h3>
@@ -185,14 +185,14 @@
 									<tr>
 										<th class="product-name">Product</th>
 										<th class="product-total">Total</th>
-									</tr>							
+									</tr>
 								</thead>
 								<tbody>
 									@forelse ($items as $item)
 										@php
                                             $product = $item->associatedModel;
 											$image = !empty($product->firstMedia) ? asset('storage/images/products/'. $product->firstMedia->file_name) : asset('frontend/assets/img/cart/3.jpg')
-											
+
 										@endphp
 										<tr class="cart_item">
 											<td class="product-name">
@@ -209,30 +209,30 @@
 									@endforelse
 								</tbody>
 								<tfoot>
-									<tr class="cart-subtotal">
+									{{-- <tr class="cart-subtotal">
 										<th>Subtotal</th>
 										<td><span class="amount">{{ number_format(\Cart::getSubTotal()) }}</span></td>
 									</tr>
 									<tr class="cart-subtotal">
 										<th>Tax</th>
 										<td><span class="amount">{{ number_format(\Cart::getSubTotal()) }}</span></td>
-									</tr>
-									<tr class="cart-subtotal">
+									</tr> --}}
+									{{-- <tr class="cart-subtotal">
 										<th>Shipping Cost ({{ $totalWeight }} gram)</th>
 										<td><select id="shipping-cost-option" required name="shipping_service"></select></td>
-									</tr>
+									</tr> --}}
 									<tr class="order-total">
 										<th>Order Total</th>
 										<td><strong><span class="total-amount">{{ number_format(\Cart::getTotal()) }}</span></strong>
 										</td>
-									</tr>								
+									</tr>
 								</tfoot>
 							</table>
 						</div>
 						<div class="payment-method">
 							<div class="payment-accordion">
 								<div class="panel-group" id="faq">
-									<div class="panel panel-default">
+									{{-- <div class="panel panel-default">
 										<div class="panel-heading">
 											<h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">Direct Bank Transfer.</a></h5>
 										</div>
@@ -241,8 +241,8 @@
 												<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
 											</div>
 										</div>
-									</div>
-									<div class="panel panel-default">
+									</div> --}}
+									{{-- <div class="panel panel-default">
 										<div class="panel-heading">
 											<h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">Cheque Payment</a></h5>
 										</div>
@@ -251,8 +251,8 @@
 												<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
 											</div>
 										</div>
-									</div>
-									<div class="panel panel-default">
+									</div> --}}
+									{{-- <div class="panel panel-default">
 										<div class="panel-heading">
 											<h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>
 										</div>
@@ -261,11 +261,22 @@
 												<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
 											</div>
 										</div>
-									</div>
+									</div> --}}
+                                    <h3>Payment</h3>
+                                    <div class="ship-different-title">
+                                        <h4>
+                                            <input id="cash" type="checkbox" name="cash"/>
+                                            <label for="cash">Cash</label>
+                                        </h4>
+                                        <h4>
+                                            <input id="cashless" type="checkbox" name="cashless"/>
+                                            <label for="cashless">Cashless</label>
+                                        </h4>
+                                    </div>
 								</div>
 								<div class="order-button-payment" >
-									<input type="submit" id="test" value="Place order" />
-								</div>								
+									<input type="submit" id="test" value="Pay Now" />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -274,5 +285,5 @@
 			</form>
 		</div>
 	</div>
-	<!-- checkout-area end -->	
+	<!-- checkout-area end -->
 @endsection

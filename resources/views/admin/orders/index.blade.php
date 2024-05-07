@@ -27,7 +27,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                             {{ $order->code }} <br/>
-                            {{ $order->order_date }}                                                    
+                            {{ $order->order_date }}
                             </td>
                             <td>{{ $order->grand_total }}</td>
                             <td>
@@ -35,7 +35,9 @@
                                 {{ $order->customer_email }}
                             </td>
                             <td>{{ $order->status }}</td>
-                            <td>{{ $order->payment_status }}</td>
+                            <td>
+                                {{ $order->payment_status === 'cash' ? $order->payment_status : 'cashless(' . $order->payment_status . ')' }}
+                            </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-sm btn-primary">

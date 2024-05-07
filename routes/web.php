@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('orders/received/{orderId}', [\App\Http\Controllers\OrderController::class, 'received'])->name('checkout.received');
     Route::get('orders', [\App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{orderId}', [\App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
+    Route::get('/order-success/{orderId}', [\App\Http\Controllers\OrderController::class, 'order_success'])->name('order.success');
 
     Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.index');
