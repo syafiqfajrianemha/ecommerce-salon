@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BookingController extends Controller
 {
@@ -38,6 +40,7 @@ class BookingController extends Controller
         $request->validate([
             'name' => 'required',
             'handphone' => 'required|numeric',
+            'category' => 'required',
             'date' => 'required',
             'time' => 'required'
         ]);
@@ -46,11 +49,21 @@ class BookingController extends Controller
             'service_name' => $request->service_name,
             'name' => $request->name,
             'handphone' => $request->handphone,
+            'category' => $request->category,
             'date' => $request->date,
             'time' => $request->time,
             'total' => $request->price,
             'status' => 'Unpaid'
         ]);
+
+        if ($request['cash'] === "on" && $request['cashless'] === "on") {
+            return '<script>alert("Choose one payment only!!!");window.location.href="/orders/checkout"</script>';
+        }
+
+        if ($request['cash'] === "on") {
+            $booking->update(['status' => 'Cash']);
+            return view('frontend.booking.paycash', compact('booking'));
+        }
 
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.serverKey');
@@ -63,7 +76,7 @@ class BookingController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $booking->id,
+                'order_id' => Str::random(15),
                 'gross_amount' => $request->price,
             ),
             'customer_details' => array(
@@ -83,9 +96,10 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
+    public function show($serviceId)
     {
-        //
+        $service = Service::findOrFail($serviceId);
+        return view('frontend.booking.index', compact('service'));
     }
 
     /**

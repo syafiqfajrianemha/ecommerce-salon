@@ -26,7 +26,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">{{ __('Name') }}</label>
-                        <input type="text" class="form-control" id="name" placeholder="{{ __('Name') }}" name="name" value="{{ old('name') }}" />
+                        <input type="text" class="form-control" id="name" placeholder="{{ __('Name') }}" name="username" value="{{ old('username') }}" />
                     </div>
                     <div class="form-group">
                         <label for="email">{{ __('Email') }}</label>
@@ -48,7 +48,7 @@
                 </form>
             </div>
         </div>
-    
+
 
     <!-- Content Row -->
 

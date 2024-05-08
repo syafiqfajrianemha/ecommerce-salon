@@ -42,7 +42,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    
+
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -79,15 +79,15 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @if(session()->has('message'))
+                {{-- @if(session()->has('message'))
                     <div class="alert alert-{{ session()->get('alert-type') }} alert-dismissible fade show" role="alert" id="alert-message">
                         {{ session()->get('message') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                @endif
-                
+                @endif --}}
+
                 @yield('content')
                 <!-- /.container-fluid -->
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obtained;
 use App\Models\Service;
+use App\Models\ServiceObtained;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -14,9 +16,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::get();
-
-        return view('frontend.service.index', compact('services'));
+        return view('frontend.service.index');
     }
 
     /**
@@ -46,9 +46,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show($serviceCategory)
     {
-        return view('frontend.booking.index', compact('service'));
+        $services = Service::where(['name' => $serviceCategory])->get();
+        $ser = Service::where(['name' => $serviceCategory])->get()->first();
+
+        return view('frontend.service.detail', compact('services', 'ser'));
     }
 
     /**

@@ -27,7 +27,7 @@
                     @method('put')
                     <div class="form-group">
                         <label for="name">{{ __('Name') }}</label>
-                        <input type="text" class="form-control" id="name" placeholder="{{ __('Name') }}" name="name" value="{{ old('name', $user->name) }}" />
+                        <input type="text" class="form-control" id="name" placeholder="{{ __('Name') }}" name="username" value="{{ old('username', $user->username) }}" />
                     </div>
                     <div class="form-group">
                         <label for="email">{{ __('Email') }}</label>
@@ -49,7 +49,7 @@
                 </form>
             </div>
         </div>
-    
+
 
     <!-- Content Row -->
 

@@ -2,6 +2,14 @@
 
 @section('content')
    <div class="container">
+    @if(session('message'))
+        <div class="alert alert-info">
+            {{ session('message') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex">
                 <h6 class="m-0 font-weight-bold text-primary">
@@ -16,7 +24,7 @@
                         <th>Order ID</th>
                         <th>Grand Total</th>
                         <th>Name</th>
-                        <th>Status</th>
+                        <th>WhatsApp</th>
                         <th>Payment</th>
                         <th class="text-center" style="width: 30px;">Action</th>
                     </tr>
@@ -29,12 +37,12 @@
                             {{ $order->code }} <br/>
                             {{ $order->order_date }}
                             </td>
-                            <td>{{ $order->grand_total }}</td>
+                            <td>{{ number_format($order->base_total_price, 0, '.', '.') }}</td>
                             <td>
-                                {{ $order->customer_first_name }} {{ $order->customer_last_name }} <br/>
+                                {{ $order->customer_first_name }} <br/>
                                 {{ $order->customer_email }}
                             </td>
-                            <td>{{ $order->status }}</td>
+                            <td>{{ $order->customer_phone }}</td>
                             <td>
                                 {{ $order->payment_status === 'cash' ? $order->payment_status : 'cashless(' . $order->payment_status . ')' }}
                             </td>

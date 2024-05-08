@@ -18,10 +18,11 @@ class CreateBookingsTable extends Migration
             $table->string('service_name');
             $table->string('name');
             $table->string('handphone');
+            $table->string('category');
             $table->string('date');
             $table->string('time');
             $table->string('total');
-            $table->enum('status', ['Unpaid', 'Paid']);
+            $table->enum('status', ['Unpaid', 'Paid', "Cash"]);
             $table->timestamps();
         });
     }

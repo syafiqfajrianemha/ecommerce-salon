@@ -41,7 +41,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <span class="badge{{ $booking->status == 'Paid' ? ' badge-success' : ' badge-danger' }}">{{ $booking->status }}</span>
+                                    {{ $booking->status === 'Cash' ? $booking->status : 'Cashless(' . $booking->status . ')' }}
                                 </td>
                                 <td>{{ $booking->service_name }}</td>
                                 <td>{{ $booking->name }}</td>

@@ -7,7 +7,34 @@
     <div class="shop-page-wrapper shop-page-padding ptb-100">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                @forelse ($services as $service)
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h4 class="card-title mb-5">Basic</h4>
+                            <img src="{{ url('/frontend/assets/img/iconservice.png') }}" class="img-fluid" alt="...">
+                            <a href="{{ route('service.show', 'Basic') }}" class="btn btn-primary mt-5 d-block">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h4 class="card-title mb-5">Standart</h4>
+                            <img src="{{ url('/frontend/assets/img/iconservice.png') }}" class="img-fluid" alt="...">
+                            <a href="{{ route('service.show', 'Standart') }}" class="btn btn-primary mt-5 d-block">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h4 class="card-title mb-5">Premium</h4>
+                            <img src="{{ url('/frontend/assets/img/iconservice.png') }}" class="img-fluid" alt="...">
+                            <a href="{{ route('service.show', 'Premium') }}" class="btn btn-primary mt-5 d-block">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                {{-- @forelse ($services as $service)
                     <div class="col-lg-3">
                         <div class="card text-center">
                             <div class="card-body">
@@ -26,7 +53,7 @@
                     <div class="text-center">
                         <h4 class="text-danger">Service Empty.</h4>
                     </div>
-                @endforelse
+                @endforelse --}}
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                         <br> Postcode: {{ $order->customer_postcode }}
                     </address>
                 </div>
-                <div class="col-xl-4 col-lg-4">
+                {{-- <div class="col-xl-4 col-lg-4">
                     <p class="text-dark mb-2" style="font-weight: normal; font-size:16px; text-transform: uppercase;">Shipment Address</p>
                     <address>
                         {{ $order->shipment->first_name }} {{ $order->shipment->last_name }}
@@ -33,7 +33,7 @@
                         <br> Phone: {{ $order->shipment->phone }}
                         <br> Postcode: {{ $order->shipment->postcode }}
                     </address>
-                </div>
+                </div> --}}
                 <div class="col-xl-4 col-lg-4">
                     <p class="text-dark mb-2" style="font-weight: normal; font-size:16px; text-transform: uppercase;">Details</p>
                     <address>
@@ -80,7 +80,7 @@
                         <li class="mid pb-3 text-dark">Subtotal
                             <span class="d-inline-block float-right text-default">{{ $order->base_total_price }}</span>
                         </li>
-                        <li class="mid pb-3 text-dark">Tax(10%)
+                        {{-- <li class="mid pb-3 text-dark">Tax(10%)
                             <span class="d-inline-block float-right text-default">{{ $order->tax_amount }}</span>
                         </li>
                         <li class="mid pb-3 text-dark">Shipping Cost
@@ -88,9 +88,9 @@
                         </li>
                         <li class="pb-3 text-dark">Total
                             <span class="d-inline-block float-right">{{ $order->grand_total }}</span>
-                        </li>
+                        </li> --}}
                     </ul>
-                    @if ($order->isPaid() && $order->isConfirmed())
+                    {{-- @if ($order->isPaid() && $order->isConfirmed())
                         <a href="{{ route('admin.shipments.edit', $order->shipment->id) }}" class="btn btn-block mt-2 btn-lg btn-primary btn-pill"> Procced to Shipment</a>
                     @endif
 
@@ -98,21 +98,21 @@
                         <a href="{{ route('admin.orders.cancel', $order->id) }}" class="btn btn-block mt-2 btn-lg btn-warning btn-pill"> Cancel</a>
                     @endif
                     @if ($order->isDelivered())
-                        
+
                         <form action="{{ route('admin.orders.complete', $order->id) }}" method="post" >
                             @csrf
                             <button class="btn btn-block mt-2 btn-lg btn-success btn-pill"> Mark as Completed</button>
                         </form>
-                    @endif
+                    @endif --}}
 
-                    @if (!in_array($order->status, [\App\Models\Order::DELIVERED, \App\Models\Order::COMPLETED]))
+                    {{-- @if (!in_array($order->status, [\App\Models\Order::DELIVERED, \App\Models\Order::COMPLETED]))
                         <a href="" class="btn btn-block mt-2 btn-lg btn-secondary btn-pill delete" onclick="event.preventDefault();document.getElementById('delete-form-{{$order->id}}').submit();"> Remove</a>
-                        
+
                         <form action="{{ route('admin.orders.destroy', $order) }} }}" method="post" id="delete-form-{{$order->id}}" class="d-none">
                             @csrf
                             @method('delete')
                         </form>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>

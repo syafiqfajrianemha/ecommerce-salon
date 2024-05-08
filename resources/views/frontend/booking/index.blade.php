@@ -16,26 +16,42 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="serviceName">Service Name</label>
-                                    <input type="text" class="form-control" id="serviceName" name="service_name" value="{{ $service->name }}" readonly>
+                                    <label for="obtainedName">Service Name</label>
+                                    @foreach ($service->obtaineds as $obtained)
+                                        <input type="text" hidden class="form-control" id="obtainedName" name="service_name" value="{{ $obtained->name }}" readonly>
+                                        <input type="text" class="form-control" id="obtainedName" value="{{ $obtained->name }}" readonly disabled>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="servicePrice">Service Price</label>
-                                    <input type="text" class="form-control" id="servicePrice" name="price" value="{{ $service->price }}" readonly>
+                                    <input type="text" hidden class="form-control" id="servicePrice" name="price" value="{{ $service->price }}" readonly>
+                                    <input type="text" class="form-control" id="servicePrice" value="IDR. {{ number_format($service->price, 0, '.', '.') }}" readonly disabled>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <label class="d-block m-0">Service Obtained</label>
-                            @foreach ($service->obtaineds as $obtained)
+                            <h4 class="mt-2">Category : {{ $service->name }}</h4>
+                            <input type="text" hidden class="form-control" id="obtainedName" name="category" value="{{ $service->name }}" readonly>
+                            {{-- <label class="d-block m-0">Category : Basic</label> --}}
+                            {{-- @foreach ($service->obtaineds as $obtained)
                                 <li class="badge badge-primary"><i class="fas fa-check mr-2"></i>{{ $obtained->name }}</li>
-                            @endforeach
+                            @endforeach --}}
                         </div>
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" class="form-control" name="name" id="name" required>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" class="form-control" name="name" id="name" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="handphone">WhatsApp</label>
+                                    <input type="text" class="form-control" name="handphone" id="handphone" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -51,11 +67,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="handphone">WhatsApp</label>
-                            <input type="text" class="form-control" name="handphone" id="handphone" required>
+                        <h4>Payment</h4>
+                        <div class="ship-different-title">
+                            <h5>
+                                <input id="cash" type="checkbox" name="cash"/>
+                                <label for="cash">Cash</label>
+                            </h5>
+                            <h5>
+                                <input id="cashless" type="checkbox" name="cashless"/>
+                                <label for="cashless">Cashless</label>
+                            </h5>
                         </div>
-                        <button type="submit" class="btn btn-dark btn-lg btn-block">Proceed To Checkout<i class="ml-2 fa-solid fa-circle-arrow-right"></i></button>
+                        <button type="submit" class="btn btn-dark btn-lg btn-block">Next<i class="ml-2 fa-solid fa-circle-arrow-right"></i></button>
                     </form>
                 </div>
             </div>

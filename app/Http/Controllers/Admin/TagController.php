@@ -16,10 +16,10 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         abort_if(Gate::denies('tag_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tags = Tag::withCount('products')->latest()->paginate(5); 
+        $tags = Tag::withCount('products')->latest()->paginate(5);
 
         return view('admin.tags.index', compact('tags'));
     }
@@ -33,7 +33,7 @@ class TagController extends Controller
     {
         abort_if(Gate::denies('tag_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-         return view('admin.tags.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -86,16 +86,16 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagRequest $request,Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
         abort_if(Gate::denies('tag_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-       $tag->update($request->validated());
+        $tag->update($request->validated());
 
         return redirect()->route('admin.tags.index')->with([
             'message' => 'success updated !',
             'alert-type' => 'info'
-        ]);    
+        ]);
     }
 
     /**
@@ -113,6 +113,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.index')->with([
             'message' => 'success deleted !',
             'alert-type' => 'danger',
-            ]);
+        ]);
     }
 }

@@ -236,7 +236,7 @@ class OrderController extends Controller
                 // 'discount_percent' => $discountPercent,
                 // 'shipping_cost' => $shippingCost,
                 // 'grand_total' => $grandTotal,
-                // 'customer_first_name' => $params['first_name'],
+                'customer_first_name' => $token['username'],
                 // 'customer_last_name' => $params['last_name'],
                 // 'customer_address1' => $params['address1'],
                 // 'customer_address2' => $params['address2'],
@@ -325,6 +325,10 @@ class OrderController extends Controller
                 'alert-type' => 'danger'
             ]);
             // return redirect()->route('checkout.received', $order->id);
+        }
+
+        if ($request['cash'] === "on" && $request['cashless'] === "on") {
+            return '<script>alert("Choose one payment only!!!");window.location.href="/orders/checkout"</script>';
         }
 
         if ($request['cash'] === "on") {
