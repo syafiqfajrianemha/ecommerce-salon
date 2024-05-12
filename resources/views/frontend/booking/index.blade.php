@@ -1,7 +1,12 @@
 @extends('layouts.frontend')
 @section('title', 'Services')
 @push('style')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        .gj-icon.clock {
+            display: none;
+        }
+    </style>
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 @endpush
 @section('content')
     <div class="section-title-furits text-center">
@@ -34,10 +39,6 @@
                         <div class="form-group text-center">
                             <h4 class="mt-2">Category : {{ $service->name }}</h4>
                             <input type="text" hidden class="form-control" id="obtainedName" name="category" value="{{ $service->name }}" readonly>
-                            {{-- <label class="d-block m-0">Category : Basic</label> --}}
-                            {{-- @foreach ($service->obtaineds as $obtained)
-                                <li class="badge badge-primary"><i class="fas fa-check mr-2"></i>{{ $obtained->name }}</li>
-                            @endforeach --}}
                         </div>
                         <div class="row">
                             <div class="col">
@@ -56,14 +57,14 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="date">Date</label>
-                                    <input type="text" class="form-control" name="date" id="date" required>
+                                    <label for="datepicker">Date</label>
+                                    <input type="text" class="form-control pl-3" name="date" id="datepicker" required autocomplete="off" readonly>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="time">Time</label>
-                                    <input type="text" class="form-control" name="time" id="time" required>
+                                    <label for="timepicker">Time</label>
+                                    <input type="text" class="form-control pl-3" name="time" id="timepicker" required autocomplete="off" readonly onfocus="$timepicker.open()">
                                 </div>
                             </div>
                         </div>
@@ -85,3 +86,19 @@
         </div>
     </div>
 @endsection
+@push('script')
+    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $('#datepicker').datepicker({
+                showOnFocus: true,
+                showRightIcon: false
+            });
+        });
+
+        var $timepicker = $('#timepicker').timepicker({
+            mode: '24hr',
+            showRightIcon: false
+        });
+    </script>
+@endpush
