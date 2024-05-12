@@ -26,13 +26,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Status</th>
-                                <th>Service Name</th>
+                                <th>Payment</th>
+                                <th>Service</th>
                                 <th>Customer Name</th>
                                 <th>Contact</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Total</th>
                                 {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
@@ -41,14 +40,21 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    {{ $booking->status === 'Cash' ? $booking->status : 'Cashless(' . $booking->status . ')' }}
+                                     @if ($booking->status === 'Cash')
+                                         {{ $booking->status }}
+                                     @else
+                                        @if ($booking->status === 'Paid')
+                                            <span class="text-success">Cashless - Paid</span>
+                                        @elseif ($booking->status === 'Unpaid')
+                                            <span class="text-danger">Cashless - Unpaid</span>
+                                        @endif
+                                     @endif
                                 </td>
-                                <td>{{ $booking->service_name }}</td>
+                                <td>{{ $booking->category }} - {{ $booking->service_name }} ({{ number_format($booking->total, 0, '.', '.') }})</td>
                                 <td>{{ $booking->name }}</td>
                                 <td>{{ $booking->handphone }}</td>
                                 <td>{{ $booking->date }}</td>
                                 <td>{{ $booking->time }}</td>
-                                <td>{{ number_format($booking->total, 0, '.', '.') }}</td>
                                 {{-- <td>
                                     <a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-info">
                                         <i class="fa fa-pencil-alt"></i>
