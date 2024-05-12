@@ -54,19 +54,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="datepicker">Date</label>
-                                    <input type="text" class="form-control pl-3" name="date" id="datepicker" required autocomplete="off" readonly>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="timepicker">Time</label>
-                                    <input type="text" class="form-control pl-3" name="time" id="timepicker" required autocomplete="off" readonly onfocus="$timepicker.open()">
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="schedule">Date and Time</label>
+                            <select class="form-control" id="schedule" name="schedule">
+                                <option selected disabled>Choose Date and Time</option>
+                                @foreach ($schedules as $schedule)
+                                    <option value="{{ $schedule->id }}/{{ $schedule->date }}/{{ $schedule->time }}">Date {{ $schedule->date }} - Time {{ $schedule->time }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <h4>Payment</h4>
                         <div class="ship-different-title">

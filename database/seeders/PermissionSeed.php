@@ -60,6 +60,11 @@ class PermissionSeed extends Seeder
             ['title' => 'obtained_edit',],
             ['title' => 'obtained_view',],
             ['title' => 'obtained_delete',],
+            ['title' => 'schedule_access',],
+            ['title' => 'schedule_create',],
+            ['title' => 'schedule_edit',],
+            ['title' => 'schedule_view',],
+            ['title' => 'schedule_delete',],
         ];
 
         Permission::insert($permissions);

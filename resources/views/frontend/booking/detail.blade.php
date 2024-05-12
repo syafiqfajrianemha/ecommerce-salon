@@ -53,7 +53,7 @@
           onSuccess: function(result){
             /* You may add your own implementation here */
             alert("payment success!"); console.log(result);
-            window.location.replace("{{ route('payment.success', $booking->id) }}");
+            window.location.replace("{{ route('payment.success', ['bookingId' => $booking->id, 'scheduleId' => $scheduleId]) }}");
           },
           onPending: function(result){
             /* You may add your own implementation here */

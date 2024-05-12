@@ -37,7 +37,7 @@ Route::resource('cart', \App\Http\Controllers\CartController::class)->only(['ind
 Route::resource('/service', \App\Http\Controllers\ServiceController::class);
 Route::resource('/booking', \App\Http\Controllers\BookingController::class);
 Route::post('/midtrans-callback', [\App\Http\Controllers\BookingController::class, 'midtrans_callback']);
-Route::get('/payment-success/{bookingId}', [\App\Http\Controllers\BookingController::class, 'payment_success'])->name('payment.success');
+Route::get('/payment-success/{bookingId}/{scheduleId}', [\App\Http\Controllers\BookingController::class, 'payment_success'])->name('payment.success');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
         Route::resource('reviews', \App\Http\Controllers\Admin\ReviewController::class)->only(['index', 'edit', 'update', 'destroy', 'show']);
 
+        Route::resource('schedule', \App\Http\Controllers\Admin\ScheduleController::class);
         Route::resource('service', \App\Http\Controllers\Admin\ServiceController::class);
         Route::resource('obtained', \App\Http\Controllers\Admin\ObtainedController::class);
 

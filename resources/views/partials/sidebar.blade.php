@@ -53,6 +53,7 @@
                 </a>
                 <div id="collapseServices" class="collapse" aria-labelledby="headingServices" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item {{ request()->is('admin/schedule') || request()->is('admin/schedule/*') ? 'active' : '' }}" href="{{ route('admin.schedule.index') }}"> <i class="fa fa-briefcase mr-2"></i> {{ __('Schedule') }}</a>
                         <a class="collapse-item {{ request()->is('admin/obtained') || request()->is('admin/obtained/*') ? 'active' : '' }}" href="{{ route('admin.obtained.index') }}"> <i class="fa fa-briefcase mr-2"></i> {{ __('Services Obtained') }}</a>
                         <a class="collapse-item {{ request()->is('admin/service') || request()->is('admin/service/*') ? 'active' : '' }}" href="{{ route('admin.service.index') }}"> <i class="fa fa-briefcase mr-2"></i> {{ __('Services') }}</a>
                     </div>

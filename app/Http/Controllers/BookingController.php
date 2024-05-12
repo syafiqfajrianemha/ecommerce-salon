@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Schedule;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -41,17 +42,24 @@ class BookingController extends Controller
             'name' => 'required',
             'handphone' => 'required|numeric',
             'category' => 'required',
-            'date' => 'required',
-            'time' => 'required'
+            'schedule' => 'required'
         ]);
+
+        $schedule = Str::of($request->schedule)->explode('/');
+
+        $scheduleId = $schedule[0];
+        $date = $schedule[1];
+        $time = $schedule[2];
+
+        $scheduleData = Schedule::findOrFail($scheduleId);
 
         $booking = Booking::create([
             'service_name' => $request->service_name,
             'name' => $request->name,
             'handphone' => $request->handphone,
             'category' => $request->category,
-            'date' => $request->date,
-            'time' => $request->time,
+            'date' => $date,
+            'time' => $time,
             'total' => $request->price,
             'status' => 'Unpaid'
         ]);
@@ -62,6 +70,7 @@ class BookingController extends Controller
 
         if ($request['cash'] === "on") {
             $booking->update(['status' => 'Cash']);
+            $scheduleData->update(['status' => 'booked']);
             return view('frontend.booking.paycash', compact('booking'));
         }
 
@@ -87,7 +96,7 @@ class BookingController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        return view('frontend.booking.detail', compact('snapToken', 'booking'));
+        return view('frontend.booking.detail', compact('snapToken', 'booking', 'scheduleId'));
     }
 
     /**
@@ -99,7 +108,8 @@ class BookingController extends Controller
     public function show($serviceId)
     {
         $service = Service::findOrFail($serviceId);
-        return view('frontend.booking.index', compact('service'));
+        $schedules = Schedule::where(['status' => 'available'])->get();
+        return view('frontend.booking.index', compact('service', 'schedules'));
     }
 
     /**
@@ -149,10 +159,14 @@ class BookingController extends Controller
         }
     }
 
-    public function payment_success($bookingId)
+    public function payment_success($bookingId, $scheduleId)
     {
-        $booking = Booking::find($bookingId);
+        $booking = Booking::findOrFail($bookingId);
         $booking->update(['status' => 'Paid']);
+
+        $schedule = Schedule::findOrFail($scheduleId);
+        $schedule->update(['status' => 'booked']);
+
         return redirect()->route('service.index');
     }
 }
