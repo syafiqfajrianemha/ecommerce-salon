@@ -28,8 +28,20 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="serviceName">Service Name</label>
-                                <input type="text" class="form-control" id="serviceName" name="name" value="{{ old('name', $service->name) }}" />
+                                    <label for="serviceCategory">Service Category</label>
+                                    <select class="form-control" id="serviceCategory" name="name">
+                                        <option selected disabled>Chosee Service Category</option>
+                                        @foreach ($serviceCategories as $serviceCategory)
+                                            {{-- <option value="{{ $serviceCategory->name }}">{{ $serviceCategory->name }}</option> --}}
+
+                                            <option value="{{ $serviceCategory->name }}"
+                                                @if ($serviceCategory->name == $service->name)
+                                                    selected
+                                                @endif>
+                                                {{ $serviceCategory->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                             </div>
                         </div>
                         <div class="col">
@@ -41,7 +53,8 @@
                     </div>
                     <div class="form-group">
                         <label for="serviceObtained">{{ __('Service Obtained') }}</label>
-                        <select name="obtaineds[]" id="obtaineds" class="form-control select2" multiple="multiple" required>
+                        <select name="obtaineds[]" id="serviceObtained" class="form-control" required>
+                            <option selected disabled>Chosee Service Obtained</option>
                             @foreach($obtaineds as $id => $obtaineds)
                                 <option value="{{ $id }}" {{ (in_array($id, old('obtaineds', [])) || isset($service) && $service->obtaineds->contains($id)) ? 'selected' : '' }}>{{ $obtaineds }}</option>
                             @endforeach

@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('reviews', \App\Http\Controllers\Admin\ReviewController::class)->only(['index', 'edit', 'update', 'destroy', 'show']);
 
         Route::resource('schedule', \App\Http\Controllers\Admin\ScheduleController::class);
+        Route::resource('category', \App\Http\Controllers\Admin\ServiceCategoryController::class);
         Route::resource('service', \App\Http\Controllers\Admin\ServiceController::class);
         Route::resource('obtained', \App\Http\Controllers\Admin\ObtainedController::class);
 

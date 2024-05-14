@@ -34,9 +34,9 @@
                                     <label for="serviceCategory">Service Category</label>
                                     <select class="form-control" id="serviceCategory" name="name">
                                         <option selected disabled>Chosee Service Category</option>
-                                        <option value="Basic">Basic</option>
-                                        <option value="Standart">Standart</option>
-                                        <option value="Premium">Premium</option>
+                                        @foreach ($serviceCategories as $serviceCategory)
+                                            <option value="{{ $serviceCategory->name }}">{{ $serviceCategory->name }}</option>
+                                        @endforeach
                                     </select>
                             </div>
                         </div>

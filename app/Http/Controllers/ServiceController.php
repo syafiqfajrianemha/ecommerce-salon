@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Obtained;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\ServiceObtained;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('frontend.service.index');
+        $serviceCategories = ServiceCategory::get();
+        return view('frontend.service.index', compact('serviceCategories'));
     }
 
     /**

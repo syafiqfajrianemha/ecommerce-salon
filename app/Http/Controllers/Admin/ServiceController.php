@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreServiceRequest;
 use App\Http\Requests\Admin\UpdateServiceRequest;
 use App\Models\Obtained;
+use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
@@ -33,8 +34,9 @@ class ServiceController extends Controller
     public function create()
     {
         $obtaineds = Obtained::pluck('name', 'id');
+        $serviceCategories = ServiceCategory::get();
 
-        return view('admin.services.create', compact('obtaineds'));
+        return view('admin.services.create', compact('obtaineds', 'serviceCategories'));
     }
 
     /**
@@ -71,8 +73,9 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         $obtaineds = Obtained::pluck('name', 'id');
+        $serviceCategories = ServiceCategory::get();
 
-        return view('admin.services.edit', compact('service', 'obtaineds'));
+        return view('admin.services.edit', compact('service', 'obtaineds', 'serviceCategories'));
     }
 
     /**
