@@ -18,7 +18,7 @@
                     <div class="product-details-img-content">
                         <div class="product-details-tab mr-70">
                             @if($product->media_count)
-                                <div class="product-details-large tab-content">
+                                {{-- <div class="product-details-large tab-content">
                                     @foreach ($product->media as $media)
                                         <div class="tab-pane {{ $loop->index == 0 ? 'active' : '' }} show fade"
                                              id="pro-details{{ $loop->index }}" role="tabpanel">
@@ -35,13 +35,13 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>
+                                </div> --}}
                                 <div class="product-details-small nav mt-12" role=tablist>
                                     @foreach ($product->media as $media)
                                         <a class="{{ $loop->index == 0 ? 'active' : '' }} mr-12"
                                            href="#pro-details{{ $loop->index }}" data-toggle="tab" role="tab"
                                            aria-selected="true">
-                                            <img style="width: 90px;" src="{{ asset('storage/images/products/' . $media->file_name ) }}"
+                                            <img src="{{ asset('storage/images/products/' . $media->file_name ) }}"
                                                  alt="{{ $product->name }}">
                                         </a>
                                     @endforeach

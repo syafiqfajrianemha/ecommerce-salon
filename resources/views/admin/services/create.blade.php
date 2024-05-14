@@ -26,9 +26,18 @@
                     @csrf
                     <div class="row">
                         <div class="col">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="serviceName">{{ __('Service Name') }}</label>
                                 <input type="text" class="form-control" id="serviceName" placeholder="{{ __('Service Name') }}" name="name" value="{{ old('name') }}" />
+                            </div> --}}
+                            <div class="form-group">
+                                    <label for="serviceCategory">Service Category</label>
+                                    <select class="form-control" id="serviceCategory" name="name">
+                                        <option selected disabled>Chosee Service Category</option>
+                                        <option value="Basic">Basic</option>
+                                        <option value="Standart">Standart</option>
+                                        <option value="Premium">Premium</option>
+                                    </select>
                             </div>
                         </div>
                         <div class="col">
@@ -40,7 +49,8 @@
                     </div>
                     <div class="form-group">
                         <label for="serviceObtained">{{ __('Service Obtained') }}</label>
-                        <select name="obtaineds[]" id="serviceObtained" class="form-control select2" multiple="multiple" required>
+                        <select name="obtaineds[]" id="serviceObtained" class="form-control" required>
+                            <option selected disabled>Chosee Service Obtained</option>
                             @foreach($obtaineds as $id => $obtaineds)
                                 <option value="{{ $id }}" {{ (in_array($id, old('obtaineds', [])) || isset($service) && $service->obtaineds->contains($id)) ? 'selected' : '' }}>{{ $obtaineds }}</option>
                             @endforeach
